@@ -4,12 +4,13 @@
 
 A Streamlit chatbot powered by Groq. Pick a model, pick a personality, and chat. Each personality is scoped to a single subject and politely refuses anything outside it.
 
+### ▶︎ [Try it live](https://agentic-chat-ap9tcu5vuj6uzrulfdzefj.streamlit.app)
+
+[![Live app](https://img.shields.io/badge/live_app-Streamlit_Cloud-ff4b4b)](https://agentic-chat-ap9tcu5vuj6uzrulfdzefj.streamlit.app)
 ![Python](https://img.shields.io/badge/python-3.11%2B-1f4e79)
 ![Streamlit](https://img.shields.io/badge/streamlit-1.40%2B-ff4b4b)
 ![Groq](https://img.shields.io/badge/inference-Groq_LPU-f55036)
 ![Personalities](https://img.shields.io/badge/personalities-5-1b7a43)
-
-**Live app:** _add your Streamlit Cloud URL here after deploying_
 
 ---
 
