@@ -74,16 +74,26 @@ streamlit run app.py
 
 The app opens at `http://localhost:8501`.
 
-**3. Provide the key**, using whichever suits you:
+**3. Provide the key.** The app looks in three places, in this order:
 
-- Paste it into the sidebar. Held in session state only, never written to disk.
-- Or create `.streamlit/secrets.toml` from the example file:
-  ```toml
-  GROQ_API_KEY = "gsk_your_key_here"
-  ```
-- Or set the `GROQ_API_KEY` environment variable.
+| Where | How | Safe to commit? |
+| :--- | :--- | :--- |
+| **Session** | Paste into the sidebar field | Yes, never touches disk |
+| **`.streamlit/secrets.toml`** | Create the file, add the line below | Yes, the file is gitignored |
+| **Environment** | Set `GROQ_API_KEY` | Yes, nothing stored in the repo |
 
-`.streamlit/secrets.toml` and `.env` are both gitignored. Never commit a real key.
+For local development the second option is the convenient one. Create `.streamlit/secrets.toml` next to the existing `secrets.toml.example` and put this in it:
+
+```toml
+GROQ_API_KEY = "gsk_your_real_key_here"
+```
+
+Then the sidebar field disappears and the app just works on every restart.
+
+> **Put the key in `secrets.toml`, never in `secrets.toml.example`.**
+> The `.example` file is a template and **is tracked by git**, so anything in it gets published. `secrets.toml` without the suffix is gitignored and stays local. Verify with `git check-ignore -v .streamlit/secrets.toml`, which should report a match.
+
+If a key is ever committed by accident, treat it as public: revoke it at [console.groq.com/keys](https://console.groq.com/keys) and issue a new one. Removing the file in a later commit does not help, because the value stays in git history.
 
 ---
 
@@ -114,8 +124,22 @@ Setting the secret means visitors do not need their own key, and the sidebar key
 ├── .streamlit/
 │   ├── config.toml                 theme
 │   └── secrets.toml.example        template, copy to secrets.toml
+├── tests/
+│   └── test_app.py                 headless session and personality checks
 └── README.md
 ```
+
+---
+
+## Tests
+
+```bash
+python tests/test_app.py
+```
+
+These run the app headlessly through Streamlit's `AppTest` harness, no browser and no valid API key needed. They cover the key gate, the per personality history split, system prompt construction for all five personalities, and one regression:
+
+> **The key must survive sending a message.** An earlier version stored the API key under the text input's own widget key. Streamlit clears a widget's state once that widget stops being rendered, and the input is hidden as soon as a key exists, so the key was wiped on the next rerun and the user was bounced back to the key screen mid conversation. The key now lives under a separate, non widget session key.
 
 ---
 
