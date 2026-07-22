@@ -1,6 +1,6 @@
 # Persona Chat
 
-**By Shuja Jamal** (AI Internship, Spiral Labs)
+**By Shuja Jamal**
 
 A Streamlit chatbot powered by Groq. Pick a model, pick a personality, and chat. Each personality is scoped to a single subject and politely refuses anything outside it.
 
@@ -156,4 +156,4 @@ These run the app headlessly through Streamlit's `AppTest` harness, no browser a
 
 ---
 
-*Built for the AI Internship at Spiral Labs, July 2026.*
+*By Shuja Jamal, July 2026.*

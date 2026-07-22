@@ -227,7 +227,7 @@ with st.sidebar:
 
     st.divider()
     st.caption(
-        "Built by Shuja Jamal for the AI Internship at Spiral Labs. "
+        "Built by Shuja Jamal. "
         "Conversations live in your browser session and disappear when you close the tab."
     )
 
