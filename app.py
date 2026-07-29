@@ -1,4 +1,4 @@
-"""Persona Chat: a Streamlit chatbot powered by Groq.
+"""Persona: a Streamlit chatbot powered by Groq.
 
 Users pick a Groq-hosted model and a chatbot personality. Each personality is
 scoped to one domain and refuses questions outside it. Conversation history is
@@ -18,7 +18,7 @@ from personalities import PERSONALITIES, build_system_prompt
 # Configuration
 # --------------------------------------------------------------------------
 
-APP_TITLE = "Persona Chat"
+APP_TITLE = "Persona"
 APP_ICON = "💬"
 
 # Used when the models endpoint cannot be reached. Kept deliberately short and

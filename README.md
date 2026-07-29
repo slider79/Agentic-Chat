@@ -1,4 +1,4 @@
-# Persona Chat
+# Persona
 
 **By Shuja Jamal**
 
